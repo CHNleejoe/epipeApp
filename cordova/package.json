@@ -1,0 +1,71 @@
+{
+  "name": "io.framework7.myapp",
+  "displayName": "cordova_ling",
+  "version": "1.0.0",
+  "description": "A sample Apache Cordova application that responds to the deviceready event.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Apache Cordova Team",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "cordova-android": "^8.1.0",
+    "cordova-browser": "^6.0.0",
+    "cordova-plugin-background-mode": "^0.7.3",
+    "cordova-plugin-badge": "^0.8.8",
+    "cordova-plugin-camera": "^4.1.0",
+    "cordova-plugin-compat": "^1.2.0",
+    "cordova-plugin-device": "^2.0.3",
+    "cordova-plugin-file": "^4.3.3",
+    "cordova-plugin-file-transfer": "^1.6.3",
+    "cordova-plugin-fingerprint-aio": "^2.0.0",
+    "cordova-plugin-keyboard": "^1.2.0",
+    "cordova-plugin-local-notification": "^0.9.0-beta.2",
+    "cordova-plugin-mediapicker-dmcsdk": "^2.4.5",
+    "cordova-plugin-nativestorage": "^2.3.2",
+    "cordova-plugin-network-information": "^2.0.2",
+    "cordova-plugin-splashscreen": "^5.0.3",
+    "cordova-plugin-statusbar": "^2.4.3",
+    "cordova-plugin-whitelist": "1",
+    "cordova-plugin-wkwebview-engine": "^1.2.1",
+    "cordova-plugin-wkwebview-file-xhr": "^2.1.2",
+    "cordova-plugin-zip": "^3.1.0"
+  },
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-wkwebview-file-xhr": {},
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-file": {},
+      "cordova-plugin-file-transfer": {},
+      "cordova-plugin-zip": {},
+      "cordova-plugin-nativestorage": {},
+      "cordova-plugin-network-information": {},
+      "cordova-plugin-fingerprint-aio": {
+        "FACEID_USAGE_DESCRIPTION": " "
+      },
+      "cordova-plugin-camera": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      },
+      "cordova-plugin-mediapicker-dmcsdk": {
+        "IOS_PHOTO_LIBRARY_USAGE_DESCRIPTION": "选择照片"
+      },
+      "cordova-plugin-local-notification": {},
+      "cordova-plugin-background-mode": {},
+      "cordova-plugin-keyboard": {}
+    },
+    "platforms": [
+      "browser",
+      "android"
+    ]
+  },
+  "devDependencies": {
+    "cordova-plugin-whitelist": "^1.3.4"
+  }
+}

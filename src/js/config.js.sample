@@ -1,0 +1,49 @@
+var envConfig = {}
+
+function switchEnv(env) {
+  envConfig.env = env
+  if (env === 'jdg') {
+    envConfig.HOST = 'https://nf.jd.app.yunside.com'
+    envConfig.GATEWAY = envConfig.HOST + '/api/gateway'
+
+    envConfig.APP_KEY = '52bd027c8a44f5fdf1a1fc420f7c8b63'
+    envConfig.APP_SECRET = 'b71bc84081d34a1e8c1ac7dee2213a84'
+  } else if (env === 'dev') {
+    envConfig.HOST = 'https://d-gw-xm.haid.com.cn'
+    envConfig.GATEWAY = envConfig.HOST + '/api/gateway'
+    envConfig.APP_KEY = 'c3d2fc02f7bc3fec793af3bb1c08b4ec'
+    envConfig.APP_SECRET = '5c2805a8a6354390977bb335b7d108d7'
+  } else if (env === 'development' || env === 'production') {
+    // wxh 的网关、key、secret
+    envConfig.HOST = 'http://192.168.31.171:8069'
+    // envConfig.HOST = 'http://192.168.43.164:8069'
+
+    // envConfig.HOST = 'http://192.168.43.164:8069'
+    // envConfig.HOST = 'http://192.168.31.77:8069'
+    // envConfig.HOST = 'http://192.168.0.101:8069'
+
+    envConfig.GATEWAY = envConfig.HOST + '/api/gateway'
+    envConfig.APP_KEY = '829ce5e5a5bba26cb0be1292162ad536'
+    envConfig.APP_SECRET = '86fbf848e8d54df8940c27cd8cdcdca0'
+  }
+  else if (env === 'jlj') {
+    envConfig.HOST = 'http://192.168.31.100:8000'
+    envConfig.GATEWAY = envConfig.HOST + '/api/gateway'
+
+    envConfig.APP_KEY = '52bd027c8a44f5fdf1a1fc420f7c8b63'
+    envConfig.APP_SECRET = '6f5dcef3053e4b459d0b1d9e3dd4aeef'
+  }
+  else if (env === 'ljw') {
+    envConfig.HOST = 'http://192.168.31.138:9999'
+    envConfig.GATEWAY = envConfig.HOST + '/api/gateway'
+
+    envConfig.APP_KEY = 'c2cefcc7c4e99edb6dc8a0fb1a04d325'
+    envConfig.APP_SECRET = 'f74c0390712245aa8166536821ba5900'
+  }
+}
+switchEnv(process.env.NODE_ENV)
+
+module.exports = {
+  ...envConfig
+}
+

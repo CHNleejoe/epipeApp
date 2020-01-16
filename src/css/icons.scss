@@ -1,0 +1,95 @@
+@font-face {
+    font-family: 'Framework7 Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/Framework7Icons-Regular.eot");
+    src: local('Framework7 Icons'), local('Framework7Icons-Regular'), url("../fonts/Framework7Icons-Regular.woff2") format("woff2"), url("../fonts/Framework7Icons-Regular.woff") format("woff"), url("../fonts/Framework7Icons-Regular.ttf") format("truetype");
+}
+
+.f7-icons,
+.framework7-icons {
+    font-family: 'Framework7 Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 25px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-feature-settings: "liga";
+    -moz-font-feature-settings: "liga=1";
+    -moz-font-feature-settings: "liga";
+    font-feature-settings: "liga";
+}
+
+.icon-desktop {
+    width: 25px;
+    height: 25px;
+    // background-image: url(../img/work.png);
+    background-position: center;
+}
+
+
+/* 九宫格 */
+
+.desktop-tabs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    // border-top: 1px solid #eee;
+    background: whitesmoke;
+    .desktop-tabs-item {
+        display: flex;
+        flex-direction: column;
+        width: calc(25% - 1px);
+        justify-content: space-around;
+        padding: 10px 0;
+        align-items: center;
+        height: 85px;
+        background: transparent;
+        // border-bottom: 1px solid #eee;
+        // border-right: 1px solid #eee;
+        span {
+            color: black;
+        }
+    }
+}
+
+
+/* 事件管理 */
+
+.icon-event-management {
+    width: 45px;
+    height: 45px;
+    background-size: 45px 45px;
+    // background-image: url(../img/event_management@3x.png);
+    background-position: center;
+}
+
+// .platform-android {
+//   // 沉浸式状态栏，设置header留出状态栏的位置
+//   ion-header {
+//     padding-top: #{$cordova-md-statusbar-padding};
+//     background-color: color($colors, head-color);
+//   }
+//   .immersive {
+//     padding-top: #{$cordova-md-statusbar-padding};
+//   }
+// }
+// .platform-ios {
+//   // 沉浸式状态栏，设置header留出状态栏的位置
+//   ion-header {
+//     padding-top: #{$cordova-ios-statusbar-padding};
+//     background-color: color($colors, head-color);
+//   }
+//   .immersive {
+//     padding-top: #{$cordova-ios-statusbar-padding};
+//   }
+// }
