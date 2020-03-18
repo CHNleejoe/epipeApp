@@ -2,13 +2,13 @@
   <f7-app :params="f7params">
 
     <!-- Views/Tabs container -->
-    <f7-view url="/menu/" main class="safe-areas"></f7-view>
+    <f7-view url="/login/" main class="safe-areas"></f7-view>
   </f7-app>
 </template>
 <script>
   import cordovaApp from './js/cordova-app.js';
   import routes from './js/routes.js';
-  import 'vant/lib/index.css';
+
   export default {
     data() {
       return {
@@ -62,11 +62,7 @@
           },
           picker: {
             rotateEffect: true,
-            toolbarCloseText: "确认",
-            closeByOutsideClick: false
-          },
-          smartSelect: {
-            sheetCloseLinkText: '关闭'
+            toolbarCloseText: "确认"
           },
           panel: {
             swipe: "left"
@@ -102,8 +98,6 @@
           cordovaApp.init(f7);
         }
         // Call F7 APIs here
-        navigator.splashscreen.hide();
-
       });
     },
     watch: {

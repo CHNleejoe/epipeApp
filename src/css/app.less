@@ -3,55 +3,73 @@
   height: 100vh;
 }
 
-// 不能复制
-html {
-  user-select: none;
-  -moz-user-select: -moz-none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-}
-
 /* Custom color theme properties */
 :root {
-  --f7-theme-color: #007aff;
-  --f7-theme-color-rgb: 0, 122, 255;
-  --f7-theme-color-shade: #0066d6;
-  --f7-theme-color-tint: #298fff;
+  --f7-theme-color: #f7f7f7;
+  --f7-theme-color-rgb: 247, 247, 247;
+  --f7-theme-color-shade: #1f2b37;
+  --f7-theme-color-tint: #3d536b;
+  --f7-navbar-title-font-weight: nomal;
+  --f7-dialog-button-text-color: var(--f7-dialog-text-color);
 }
 
-/* Left Panel right border when it is visible by breakpoint */
-.panel-left.panel-in-breakpoint:before {
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-  width: 1px;
-  background: rgba(0, 0, 0, 0.1);
-  content: '';
-  z-index: 6000;
+/* Invert navigation bars to fill style */
+:root,
+:root.theme-dark,
+:root .theme-dark {
+  --f7-bars-bg-color: var(--f7-theme-color);
+  --f7-bars-bg-color-rgb: var(--f7-theme-color-rgb);
+  --f7-bars-translucent-opacity: 0.9;
+  --f7-bars-text-color: #000000;
+  --f7-bars-link-color: #000000;
+  --f7-navbar-subtitle-text-color: rgba(0, 0, 0, 0.85);
+  --f7-bars-border-color: transparent;
+  --f7-tabbar-link-active-color: #57BD6B;
+  --f7-tabbar-link-inactive-color: rgba(0, 0, 0, 0.54);
+  --f7-sheet-border-color: transparent;
+  --f7-tabbar-link-active-border-color: #000000;
+  --f7-list-bg-color: white;
 }
 
-/* Hide navbar link which opens left panel when it is visible by breakpoint */
-.panel-left.panel-in-breakpoint~.view .navbar .panel-open[data-panel="left"] {
-  display: none;
+.appbar,
+.navbar,
+.toolbar,
+.subnavbar,
+.calendar-header,
+.calendar-footer {
+  --f7-touch-ripple-color: var(--f7-touch-ripple-white);
+  --f7-link-highlight-color: var(--f7-link-highlight-white);
+  --f7-button-text-color: #000000;
+  --f7-button-pressed-bg-color: rgba(255, 255, 255, 0.1);
 }
 
-/*
-  Extra borders for main view and left panel for iOS theme when it behaves as panel (before breakpoint size)
-*/
-.ios .panel-left:not(.panel-in-breakpoint).panel-in~.view-main:before,
-.ios .panel-left:not(.panel-in-breakpoint).panel-closing~.view-main:before {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 1px;
-  background: rgba(0, 0, 0, 0.1);
-  content: '';
-  z-index: 6000;
+.navbar-large-transparent {
+  --f7-navbar-large-title-text-color: #000;
+
+  --r: 46;
+  --g: 63;
+  --b: 81;
+  --progress: var(--f7-navbar-large-collapse-progress);
+  --f7-bars-link-color: rgb(calc(var(--r) + (255 - var(--r)) * var(--progress)),
+      calc(var(--g) + (255 - var(--g)) * var(--progress)),
+      calc(var(--b) + (255 - var(--b)) * var(--progress)));
 }
 
-// 修复导航栏
+.theme-dark .navbar-large-transparent {
+  --f7-navbar-large-title-text-color: #000000;
+}
+
+/* Your app custom styles here */
+
+// .timeline-item-date{
+//   width: 64px;
+// }
+
+.md .toast {
+  left: 25px;
+  width: calc(100% - 50px);
+}
+
 .md {
   --f7-page-bg-color: #eee;
   // tabs active颜色
@@ -59,7 +77,222 @@ html {
   --f7-navbar-height: 72px;
 }
 
+.md .timeline-title {
+  padding-top: 32px;
+}
+
+.ios .page-home {
+  .page-content {
+    overflow: inherit;
+    padding-top: 0;
+
+    // .ptr-preloader {
+    //   top: calc(-1 * var(--f7-ptr-size)) !important;
+    // }
+
+    .timeline-title {
+      position: absolute;
+      top: calc(var(--f7-ptr-size) + 27px);
+    }
+  }
+}
+
+.timeline-title {
+  top: 0;
+  left: 0;
+  height: calc(var(--f7-navbar-height) + var(--f7-safe-area-top));
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  zoom: 1;
+
+  .timeline-title-content {
+    color: white;
+    text-align: center;
+  }
+
+  .timeline-title-img {
+    img {
+      width: 46px;
+      border-radius: 45px;
+    }
+  }
+}
+
+.page-home .page-content {
+  overflow: hidden;
+}
+
+.md .home-timeline {
+  margin-top: calc((var(--f7-navbar-height) + var(--f7-safe-area-top)) + 32px);
+  height: calc(100% - var(--f7-navbar-height) - var(--f7-safe-area-top) - 32px)
+}
+
+.ios .home-timeline {
+  margin-top: calc((var(--f7-navbar-height) + var(--f7-safe-area-top)) + 27px);
+  height: calc(100% - var(--f7-navbar-height) - var(--f7-safe-area-top) - 27px)
+}
+
+.home-timeline {
+  margin-top: calc(var(--f7-navbar-height) + var(--f7-safe-area-top));
+  margin-bottom: 0;
+  padding-bottom: var(--f7-timeline-margin-vertical);
+  overflow: scroll;
+  height: calc(100% - var(--f7-navbar-height) - var(--f7-safe-area-top))
+}
+
+.timeline-title-content-black {
+  color: black !important;
+}
+
+.timeline-sides .timeline-item-right,
+.timeline-sides .timeline-item {
+  margin-left: calc(50% - (var(--f7-timeline-divider-margin-horizontal) * 2 + 10px) / 2 - 65px)
+}
+
+.timeline-sides .timeline-item .timeline-item-date {
+  width: 57.5px;
+}
+
+.timeline-babel .timeline-item .timeline-item-date {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  height: calc(var(--f7-timeline-padding-horizontal) * 2 + 10px);
+}
+
+.timeline-babel .timeline-item .timeline-item-divider {
+  background: white;
+}
+
+.word-break {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
 .md .navbar-inner {
   padding-top: 32px;
   overflow: hidden;
+}
+
+.gap_with_2 {
+  --f7-grid-gap: 2px;
+}
+
+.interact-image,
+.img-data,
+.img-data-grid {
+  position: relative;
+  // top: -110px;
+  // left: 208px;
+  // width: 170px;
+  // height: 128px;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.image_preview_bg {
+  background-color: #2980B9;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-data {
+  background: whitesmoke;
+}
+
+.img-data img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.btn-text-center a {
+  text-align: center;
+}
+
+.margin-botton-2 {
+  margin-bottom: 2px;
+}
+
+.photoDatePicker.input.input-with-value {
+  font-size: 16px;
+  color: black;
+}
+
+.photoDatePicker.input.input-with-value::after {
+  width: 0;
+}
+
+.lingli-interact-card {
+  .card-header {
+    display: block;
+    padding: 10px;
+  }
+
+  .lingli-interact-avatar {
+    float: left;
+
+    img {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .lingli-interact-name {
+    margin-left: 44px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .lingli-interact-date {
+    margin-left: 44px;
+    font-size: 13px;
+    color: #8e8e93;
+  }
+
+  .card-content {
+    .date {
+      color: #8e8e93;
+    }
+  }
+}
+
+
+.avator {
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+
+//只有image没有加载出来的时候 以下?才有效果
+.avator:after {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  content: "";
+  display: block;
+  top: 0;
+  left: 0;
+  background: url('../img/placeholder.png');
+  background-size: 100%;
+}
+
+.margin-bottom-2 {
+  margin-bottom: 2px;
+}
+
+html {
+  -webkit-user-select: none;
+}
+
+.tab-link-highlight {
+  width: 20% !important;
 }

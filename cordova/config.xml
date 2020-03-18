@@ -1,6 +1,6 @@
- <?xml version='1.0' encoding='utf-8'?>
-<widget id="app.epipe.property" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>物业管理系统</name>
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="app.love.quest" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>恋爱日记</name>
     <description>
         Created by misterling, use to record the love daily with liyan
     </description>
@@ -58,21 +58,7 @@
         <config-file parent="CFBundleAllowMixedLocalizations" platform="ios" target="*-Info.plist">
             <true />
         </config-file>
-        <config-file parent="UIUserInterfaceStyle" platform="ios" target="*-Info.plist">
-            <string>Light</string>
-        </config-file>
-        <config-file target="*-Info.plist" parent="UIUserInterfaceStyle">
-            <string>Light</string>
-        </config-file>
-
-        <config-file target="*-Info.plist" parent="UIViewControllerBasedStatusBarAppearance">
-            <true />
-        </config-file>
-        <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
-            <string>允许获取相机权限</string>
-        </edit-config>
         <preference name="StatusBarOverlaysWebView" value="true" />
-        <preference name="StatusBarBackgroundColor" value="#000000" />
         <splash src="res/screen/ios/Default@2x~universal~anyany.png" />
         <icon height="180" src="res/icon/ios/icon-60x60@3x.png" width="180" />
         <icon height="60" src="res/icon/ios/icon-60x60@1x.png" width="60" />
@@ -107,7 +93,6 @@
     <preference name="Allow3DTouchLinkPreview" value="false" />
     <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
     <preference name="AllowInlineMediaPlayback" value="true" />
-    <preference name="AllowBackForwardNavigationGestures" value="false" />
     <preference name="StatusBarOverlaysWebView" value="true" />
     <plugin name="cordova-plugin-statusbar" spec="^2.4.3" />
     <plugin name="cordova-plugin-splashscreen" spec="~5.0.3" />
