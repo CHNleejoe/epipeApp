@@ -45,17 +45,17 @@ Vue.prototype.$v = $v
 //   error: require('../img/errror.jpg'), //报错需要的图片
 //   loading: require('../img/hearts.svg') // 替换需要的图片
 // })
-
+// let vconsole = new VConsole();
 Vue.component('ling-loding', Loading)
 
 // Init App
 window.$$vm = new Vue({
-  el: '#app',
-  store,
-  render: (h) => h(App),
+    el: '#app',
+    store,
+    render: (h) => h(App),
 
-  // Register App Component
-  components: {
-    app: App
-  },
+    // Register App Component
+    components: {
+        app: App
+    },
 });
