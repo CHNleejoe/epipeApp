@@ -30,6 +30,12 @@ export default {
     const self = this;
     console.log('router1 :', self.$f7router);
     // console.log('item :', storageProxy.getItem("userInfo"));
+    var fileTransfer = new FileTransfer();
+    fileTransfer.download(envConfig.HOST + '/web/image?model=hh.pms.account.bill.payment.qrcode&id=4&field=qrcode_medium', cordova.file.cacheDirectory+'4610b912c.jpeg', function (entry){
+        alert(JSON.stringify(entry))
+        console.log(entry)
+    })
+
     storageProxy.getItem("userInfo").then(result => {
       self.updateLoginInfo(JSON.parse(result))
       self.requestAllMessages()

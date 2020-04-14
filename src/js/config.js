@@ -3,10 +3,10 @@ var envConfig = {}
 function switchEnv(env) {
     envConfig.env = env
     if (env === 'dev') {
-        // envConfig.HOST = 'http://192.168.3.192:8069' //yunshen
-        // envConfig.HOST = 'http://192.168.3.127:8069' //嘉文
-        // envConfig.HOST = 'http://192.168.3.218:8069' //yixin
-        envConfig.HOST = 'https://pms.erptest.epipe.cn' //product
+        envConfig.HOST = 'http://192.168.3.217:8069' //yunshen
+            // envConfig.HOST = 'http://192.168.3.127:8069' //嘉文
+            // envConfig.HOST = 'http://192.168.3.218:8069' //yixin
+            // envConfig.HOST = 'https://pms.erptest.epipe.cn' //product
         envConfig.GATEWAY = envConfig.HOST + '/api/gateway'
         envConfig.APP_KEY = 'c3d2fc02f7bc3fec793af3bb1c08b4ec'
         envConfig.APP_SECRET = '5c2805a8a6354390977bb335b7d108d7'

@@ -20,7 +20,7 @@
         <img slot="media" src="../../img/placeholder.png" width="44" />
       </f7-list-item>
     </f7-list>
-    <div class="no-data" v-if="Object.keys(messageInfo).length==0">
+    <div class="no-data" v-if="!messageInfo||Object.keys(messageInfo).length==0">
         <img src="../../img/no-data.png" alt="">
     </div>
 

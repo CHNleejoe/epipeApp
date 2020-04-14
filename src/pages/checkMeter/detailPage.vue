@@ -56,7 +56,7 @@
         
     </f7-list>
     <f7-list v-if="detailInfo.state == '待抄表'">
-        <f7-list-button class="meter-btn" title="保存" color="green" @click="saveReading"></f7-list-button>
+        <f7-list-button v-if="submitAccess" class="meter-btn" title="保存" color="green" @click="saveReading"></f7-list-button>
         <f7-list-button class="meter-btn" title="返回" color="orange" @click="back"></f7-list-button>
     </f7-list>
 
@@ -64,6 +64,8 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
     data() {
         return {
@@ -71,7 +73,11 @@ export default {
             readingDate: new Date(),
             detailInfo: {},
             imageUri: '',
+            submitAccess: false
         }
+    },
+    computed:{
+        ...mapState(['dictionaryData'])
     },
     methods:{
         requestDetail(){
@@ -248,6 +254,7 @@ export default {
     mounted() {
         const self = this;
         self.requestDetail();
+        self.dictionaryData?self.submitAccess = self.dictionaryData.menus.reading_task.items.submit:''
 
     }
 

@@ -70,21 +70,21 @@
                         radio
                         title="全部"
                         name="demo-radio"
-                        :checked="is_rent === ''"
+                        :checked="is_rent == ''"
                         @change="is_rent = ''"
                         ></f7-list-item>
                         <f7-list-item
                         radio
                         title="出租"
                         name="demo-radio"
-                        :checked="is_rent === 'true'"
+                        :checked="is_rent == 'true'"
                         @change="is_rent = 'true'"
                         ></f7-list-item>
                         <f7-list-item
                         radio
                         title="空置"
                         name="demo-radio"
-                        :checked="is_rent === 'false'"
+                        :checked="is_rent == 'false'"
                         @change="is_rent = 'false'"
                         ></f7-list-item>
                     </f7-list>
@@ -279,7 +279,7 @@ export default {
             );
         },
         // 请求获取全部楼宇 区域 楼层信息
-        requestAllBuildingData() {
+        requestAllBuildingData(done) {
             const self = this
             const router = self.$f7route;
             lingFetch(
@@ -312,6 +312,9 @@ export default {
                         self.building_id = searchQuery.building_id
                         self.floor = searchQuery.floor
                         self.is_rent = searchQuery.is_rent
+                    }
+                    if(typeof(done) == 'Function') {
+                        done();
                     }
                 },
                 function (result) {
@@ -401,8 +404,8 @@ export default {
         const router = self.$f7route
         
         
-        self.requestListData()
         self.requestAllBuildingData()
+        self.requestListData()
     }
 }
 </script>

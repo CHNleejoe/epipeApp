@@ -47,7 +47,53 @@ import { mapState, mapActions } from "vuex";
       }
     },
     methods: {
-      ...mapActions(['updateLoginInfo']),
+      ...mapActions(['updateLoginInfo', 'updateMessageInfo', 'updateDictionaryData']),
+      requestAllMessages() {
+        const self = this;
+        if(self.messageInfo) {
+          return
+        }
+        lingFetch(
+            self,
+            "pms.message",
+            "message",{},
+            function (result) {
+                // success
+                const _resData = result.data
+                console.log('_result :', _resData);
+                self.updateMessageInfo(_resData)
+            },
+            function (result) {
+                // error
+                self.$v.showToast(self,result.msg)
+            },{
+                hideLoading: true
+            }
+        );
+      },
+      requestAllDictionaryData() {
+        const self = this;
+        if(self.dictionaryData) {
+          return
+        }
+        lingFetch(
+            self,
+            "pms.public",
+            "state_map",{},
+            function (result) {
+                // success
+                const _resData = result.data
+                console.log('requestAllDictionaryData result :', _resData);
+                self.updateDictionaryData(_resData)
+            },
+            function (result) {
+                // error
+                self.$v.showToast(self,result.msg)
+            },{
+                hideLoading: true
+            }
+        );
+      },
       loginIn() {
             // "pms.public",
         const self = this;
@@ -65,6 +111,8 @@ import { mapState, mapActions } from "vuex";
               const _resData = result.data
               self.updateLoginInfo(_resData)
               storageProxy.setItem("userInfo", JSON.stringify(_resData))
+              self.requestAllMessages()
+              self.requestAllDictionaryData()
               self.$u.back(self);
             },
             function (result) {

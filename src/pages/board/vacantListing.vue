@@ -150,7 +150,7 @@ export default {
         const self = this;
         var option = {
                 title: {
-                    text: '单位：平方米',
+                    text: '单位：间',
                     subtext: '（未来一周）',
                     left: '14'
                 },
@@ -207,13 +207,13 @@ export default {
         var today = new Date();
         var Xdata = [];
         var num2week = {
-            1: 'Mon',
-            2: 'Tue',
-            3: 'Wed',
-            4: 'Thu',
-            5: 'Fri',
-            6: 'Sat',
-            0: 'Sun',
+            1: '周一',
+            2: '周二',
+            3: '周三',
+            4: '周四',
+            5: '周五',
+            6: '周六',
+            0: '周日',
         };
         for (var i = 0; i < 7; i++) {
             today = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);

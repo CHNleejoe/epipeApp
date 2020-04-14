@@ -114,6 +114,7 @@ export default {
 
       var Xdata = self.getContractWarningXAxis(self.selectIndex);
       var seriesData = {};
+      console.log('Xdata:',Xdata)
       for (var k = 0; k < Xdata.length; k++) {
           seriesData[Xdata[k]] = 0
       }
@@ -130,7 +131,7 @@ export default {
               const data = result.data
               self.contractData = data
               for (var i = 0; i < data.length; i++) {
-                  seriesData[data[i].end_date] += 1
+                  seriesData[self.selectIndex == 1?dayjs(data[i].end_date).format('YYYY-MM-DD'):dayjs(data[i].end_date).format('YYYY-MM')] += 1
               }
               self.renderChart(Xdata, Object.values(seriesData))
               },
@@ -147,17 +148,23 @@ export default {
     },
     // 获取合同到期预警X坐标
     getContractWarningXAxis: function(val) {
+        var index = 2;
+        switch(val) {
+          case 2:index = 3;break;
+          case 3:index = 6;break;
+          case 4:index = 12;break;
+        }
         var self = this;
         var Xdata = [];
         var startDate = new Date();
-        if (val === '1') {
+        if (val == '1') {
             var endDate = new Date(startDate.getFullYear(), startDate.getMonth() + parseInt(val), startDate.getDate());
             for (; startDate <= endDate;) {
                 Xdata.push(startDate.getFullYear() + '-' + self.getFormatMonth(startDate.getMonth()) + '-' + self.getFormatDay(startDate.getDate()));
                 startDate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + 1)
             }
         } else {
-            for (var i = 0; i <= parseInt(val); i++) {
+            for (var i = 0; i <= parseInt(index); i++) {
                 Xdata.push(startDate.getFullYear() + '-' + self.getFormatMonth(startDate.getMonth()));
                 startDate = new Date(startDate.getFullYear(), startDate.getMonth() + 1)
             }
@@ -338,7 +345,7 @@ export default {
                 color:rgba(0,0,0,1);
                 line-height:14px;
                 text-align: left;
-                text-indent: 10px;
+                text-indent: 3px;
             }
         }
         .list-item{
@@ -350,7 +357,7 @@ export default {
             >div{
                 width:56px;
                 height:14px;
-                font-size:14px;
+                font-size:12px;
                 font-family:SourceHanSansCN-Medium,SourceHanSansCN;
                 font-weight:500;
                 color:rgba(0,0,0,1);

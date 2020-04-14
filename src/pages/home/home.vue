@@ -20,7 +20,7 @@
         <img slot="media" src="../../img/placeholder.png" width="44" />
       </f7-list-item>
     </f7-list>
-    <div class="no-data" v-if="Object.keys(messageInfo).length==0">
+    <div class="no-data" v-if="!messageInfo||Object.keys(messageInfo).length==0">
         <img src="../../img/no-data.png" alt="">
     </div>
 
@@ -32,11 +32,11 @@ import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
-
+      messageDetailAccess: false
     }
   },
   computed:{
-    ...mapState(['messageInfo'])
+    ...mapState(['messageInfo', 'dictionaryData'])
   },
   methods:{
     ...mapActions(['updateMessageInfo']),
@@ -61,9 +61,15 @@ export default {
     },
     turnToDetail(item) {
       const self = this;
-      const router = self.$f7.views.main.router;
-      router.navigate('/noticeDetail?noticeInfo='+JSON.stringify(item))
+      const router = self.$f7router;
+      if(self.messageDetailAccess) router.navigate('/noticeDetail?noticeInfo='+JSON.stringify(item))
+      else self.$v.showToast(self, '对不起，您无权限查看详情')
     }
+  },
+  mounted() {
+    const self = this;
+    self.dictionaryData?self.messageDetailAccess = self.dictionaryData.menus.message.items.customer_message:''
+
   }
 }
 </script>

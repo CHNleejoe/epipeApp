@@ -50,9 +50,10 @@ export default {
         turnToLogin() {
             const self = this
             const router = self.$f7router;
-            if(storageProxy.getItem('userInfo')){
-                router.navigate('/userSetter')
-            }else router.navigate('/login')
+            storageProxy.getItem('userInfo').then(res=>{
+                if(res) router.navigate('/userSetter')
+                else router.navigate('/login')
+            })
         },
         turnToUserSetter(){
             const self = this
@@ -61,7 +62,7 @@ export default {
         },
         clearStorage() {
             console.log('clearStorage ==')
-            storageProxy.clear()
+            // storageProxy.clear()
         }
     },
     mounted() {

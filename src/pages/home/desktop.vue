@@ -21,7 +21,7 @@
       </f7-list-group>
     </f7-list>
     <div class="work">
-      <div class="work-item" v-for="(item, index) in workList" :key='index' @click="turnToNextPage(item)">
+      <div class="work-item" v-for="(item, index) in workList" :key='index' @click="turnToNextPage(item)" v-show="item.accessFlag">
         <f7-icon :ios="item.icon" :md="item.icon"></f7-icon>
         <span>{{item.label}}</span>
       </div>
@@ -42,18 +42,18 @@
 
 <script>
 import { Picker, Popup, Col } from 'vant';
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
   data(){
     return{
       workList:[
-        {id: 1,label:'公告',herf:'/noticeList',icon:'f7:logo_rss'},
-        {id: 2,label:'报事报修',herf:'#',icon:'f7:sort_up_circle'},
-        {id: 3,label:'抄表',herf:'/meterListTmp/',icon:'material:slow_motion_video'},
-        {id: 4,label:'账单',herf:'/bill/',icon:'f7:doc_text'},
-        {id: 5,label:'租控图',herf:'/rcchart',icon:'f7:chart_bar_square'},
-        {id: 6,label:'报表',herf:'/board',icon:'f7:list_bullet_indent'},
+        {id: 1,accessLabel: 'announcement',accessFlag: false,label:'公告',herf:'/noticeList',icon:'f7:logo_rss'},
+        {id: 2,accessLabel: 'repair_request',accessFlag: false,label:'报事报修',herf:'#',icon:'f7:sort_up_circle'},
+        {id: 3,accessLabel: 'reading_task',accessFlag: false,label:'抄表',herf:'/meterListTmp/',icon:'material:slow_motion_video'},
+        {id: 4,accessLabel: 'payment',accessFlag: false,label:'账单',herf:'/bill/',icon:'f7:doc_text'},
+        {id: 5,accessLabel: 'rent_control',accessFlag: false,label:'租控图',herf:'/rcchart',icon:'f7:chart_bar_square'},
+        {id: 6,accessLabel: 'report',accessFlag: false,label:'报表',herf:'/board',icon:'f7:list_bullet_indent'},
       ],
 
       companyPopupCrl: false,
@@ -64,7 +64,7 @@ export default {
     }
   },
   computed:{
-    ...mapState(['loginInfo'])
+    ...mapState(['loginInfo', 'dictionaryData'])
   },
   components: {
     Picker,
@@ -72,19 +72,35 @@ export default {
   },
   mounted() {
     const self = this;
-    var displayCompanyList = []
-    self.loginInfo.user_companies.allowed_companies.map(_ => {
-      displayCompanyList.push(_[1])
+    storageProxy.getItem("userInfo").then(res => {
+      console.log('userInfo storageProxy:', res)
+      if(res) {
+        self.updateLoginInfo(JSON.parse(res))
+      }
+      // 公司选择
+      var displayCompanyList = []
+      self.loginInfo&&self.loginInfo.user_companies?self.loginInfo.user_companies.allowed_companies.map(_ => {
+        displayCompanyList.push(_[1])
+      }):''
+      self.displayCompanyPickerList = displayCompanyList
+
+      if(self.loginInfo&&self.loginInfo.user_companies) {
+        self.displayCompanyName = self.loginInfo.user_companies.current_company[1]
+      }else{
+        self.displayCompanyName = self.displayCompanyPickerList[0]
+      }
+
+      console.log('self.workList:',self.workList)
+      // 权限
+      self.workList.map( _i => {
+        self.dictionaryData?_i.accessFlag = self.dictionaryData.menus[_i.accessLabel].access:''
+      })
     })
-    self.displayCompanyPickerList = displayCompanyList
-    console.warn('logininfo ---', self.loginInfo)
-    if(self.loginInfo.user_companies) {
-      self.displayCompanyName = self.loginInfo.user_companies.current_company[1]
-    }else{
-      self.displayCompanyName = self.displayCompanyPickerList[0]
-    }
+    
   },
   methods:{
+    ...mapActions(['updateLoginInfo', 'updateMessageInfo', 'updateDictionaryData']),
+
     turnToNextPage(pageItem) {
       const self = this;
       const router = self.$f7router;
